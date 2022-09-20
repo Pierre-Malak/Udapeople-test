@@ -276,7 +276,8 @@ jobs:
           command: |
             cd frontend
             npm run build
-            aws s3 cp dist s3://udapeople-sgfhvtvsbsh12 --recursive
+            tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
+            aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
 
       - destroy-environment
       - revert-migrations
@@ -348,7 +349,7 @@ jobs:
       - run:
           name: Frontend smoke test.
           command: |
-            FRONTEND_WEBSITE="http://udapeople-gfhvtvsbsh12.s3-website.${AWS_DEFAULT_REGION}.amazonaws.com/#/employees"
+            FRONTEND_WEBSITE="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-east-2.amazonaws.com/#/employees"
             echo ${FRONTEND_WEBSITE}
             if curl -s ${FRONTEND_WEBSITE} | grep "Welcome"
             then
