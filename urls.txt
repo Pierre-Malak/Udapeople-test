@@ -1,0 +1,5 @@
+Github
+https://github.com/Pierre-Malak/Udapeople-test
+
+S3 Bucket url
+https://udapeople-3de7ffa.s3.us-east-2.amazonaws.com/index.html
